@@ -18,58 +18,58 @@ const Email = require('email-templates');
 // });
 
 const email = new Email({
-    message: {
-      from: 'alecgee73@gmail.com'
-    },
-    send: true,
-    transport: {
-      service: 'Gmail',
-      host: 'smtp.gmail.com',
-      port: 465,
-      ssl: true,
-      tls: true,
-      auth: {
-        user: 'alecgee73@gmail.com', // your gmail username
-        pass: 'hybridtechnol123' //your gmail password
-      }
-    }
-  })
+	message: {
+		from: 'alecgee73@gmail.com'
+	},
+	send: true,
+	transport: {
+		service: 'Gmail',
+		host: 'smtp.gmail.com',
+		port: 465,
+		ssl: true,
+		tls: true,
+		auth: {
+			user: process.env.GMAIL_USER, // your gmail username
+			pass: process.env.GMAIL_PASSWORD //your gmail password
+		}
+	}
+});
 
-    // const people = [
-    // {firstName: 'Diana', lastName: 'One'},
-    // {firstName: 'Alex', lastName: 'Another'}
-    // ];
+// const people = [
+// {firstName: 'Diana', lastName: 'One'},
+// {firstName: 'Alex', lastName: 'Another'}
+// ];
 
-    // people.forEach((person) => {
-    // email
-    //   .send({
-    //     template: 'welcome',
-    //     message: {
-    //       to: 'test@example.com'
-    //     },
-    //     locals: person
-    //   })
-    //   .then(console.log)
-    //   .catch(console.error);
-    // }).
+// people.forEach((person) => {
+// email
+//   .send({
+//     template: 'welcome',
+//     message: {
+//       to: 'test@example.com'
+//     },
+//     locals: person
+//   })
+//   .then(console.log)
+//   .catch(console.error);
+// }).
 
 module.exports = {
-  send: (to, template, locals) => {
-    // Setup e-mail data.
-   
+	send: (to, template, locals) => {
+		// Setup e-mail data.
 
-    return new Promise((resolve, reject) => {
-      resolve (email.send({
-        template,
-        message: {
-          to
-        },
-        locals
-      }))
-    })
+		return new Promise((resolve, reject) => {
+			resolve(
+				email.send({
+					template,
+					message: {
+						to
+					},
+					locals
+				})
+			);
+		});
 
-  //   // Return a promise of the function that sends the email.
-  //   return transporter.sendMail(options);
-  },
-  
+		//   // Return a promise of the function that sends the email.
+		//   return transporter.sendMail(options);
+	}
 };
