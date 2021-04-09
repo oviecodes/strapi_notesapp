@@ -19,7 +19,7 @@ const Email = require('email-templates');
 
 const email = new Email({
 	message: {
-		from: 'alecgee73@gmail.com'
+		from: process.env.GMAIL_USER
 	},
 	send: true,
 	transport: {
